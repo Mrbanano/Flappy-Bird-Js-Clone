@@ -6,6 +6,32 @@ let frames= 0;
 //LOAD SPRITE IMAGE
 const sprite = new Image();
 sprite.src = "assets/img/sprite.png";
+//GAME STATE
+const state = {
+    curent: 0,
+    getReady:0,
+    game :1,
+    over:2 
+}
+
+//CONTROL THE STATE GAME
+cvs.addEventListener("click",function(e){
+    switch (state.curent) {
+        case state.getReady:
+            state.curent = state.game;
+            break;
+        case state.game:
+            bird.flap();
+            break;
+        case state.over:
+            state.curent = state.getReady;
+            break;
+    
+        default:
+            break;
+    }
+});
+
 //BACKGROUND
 const bg = {
     sX : 0,
@@ -69,7 +95,10 @@ const bird = {
         ctx.drawImage(sprite, bird.sX, bird.sY, this.w, this.h,- this.w/2, - this.h/2, this.w, this.h);
         
         ctx.restore();
-    }
+    },
+    flap: function(){
+
+    },
 }
 // GET READY MESSAGE
 const getReady = {
@@ -81,9 +110,9 @@ const getReady = {
     y : 80,
     
     draw: function(){
-        //if(state.current == state.getReady){
+        if(state.current == state.getReady){
             ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);
-        //}
+        }
     }
     
 }
@@ -97,13 +126,11 @@ const gameOver = {
     y : 90,
     
     draw: function(){
-        //if(state.current == state.over){
+        if(state.current == state.over){
             ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);   
-        //}
-    }
-    
+        }
+    }    
 }
-
 
 //DRAW
 function draw(){ 
@@ -121,7 +148,7 @@ function update(){
 }
 //LOOP
 function loop(){
-
+    
     update();
     draw();
     frames ++
