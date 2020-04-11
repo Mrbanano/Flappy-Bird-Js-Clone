@@ -108,3 +108,4 @@ function loop() {
 //EVENTOS
 window.addEventListener("resize",resize)
 window.addEventListener("keydown",presionar)
+window.addEventListener("click",presionar)
