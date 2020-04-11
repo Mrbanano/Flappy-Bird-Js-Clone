@@ -1,16 +1,12 @@
 //SELECT CVS
 const cvs = document.getElementById("game-canvas");
 const ctx = cvs.getContext("2d");
-
 //GAME VARS AND CONST
 let frames= 0;
-
 //LOAD SPRITE IMAGE
 const sprite = new Image();
 sprite.src = "assets/img/sprite.png";
-
 //BACKGROUND
-
 const bg = {
     sX : 0,
     sY : 0,
@@ -42,7 +38,6 @@ const fg = {
         ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x + this.w, this.y, this.w, this.h);
     }
 }
-
 //BIRD
 const bird = {
     animation : [
@@ -76,9 +71,38 @@ const bird = {
         ctx.restore();
     }
 }
-
-
-
+// GET READY MESSAGE
+const getReady = {
+    sX : 0,
+    sY : 228,
+    w : 173,
+    h : 152,
+    x : cvs.width/2 - 173/2,
+    y : 80,
+    
+    draw: function(){
+        //if(state.current == state.getReady){
+            ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);
+        //}
+    }
+    
+}
+// GAME OVER MESSAGE
+const gameOver = {
+    sX : 175,
+    sY : 228,
+    w : 225,
+    h : 202,
+    x : cvs.width/2 - 225/2,
+    y : 90,
+    
+    draw: function(){
+        //if(state.current == state.over){
+            ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);   
+        //}
+    }
+    
+}
 
 
 //DRAW
@@ -88,6 +112,8 @@ function draw(){
     bg.draw();
     fg.draw();
     bird.draw();
+    getReady.draw();
+    gameOver.draw();
 }
 //UPDATE
 function update(){
