@@ -6,28 +6,28 @@ const ctx = cvs.getContext("2d");
 let frames= 0;
 
 //LOAD SPRITE IMAGE
-const Sprite = new Image();
-Sprite.scr ="./src/img/sprite.png"
-
-var bird = new Image()
-bird.src = "./src/img/sprite.png"
+const sprite = new Image();
+sprite.src = "img/sprite.png";
 
 //BACKGROUND
+
 const bg = {
-    sX:0,
-    sY:0,
-    w:275,
-    h:226,
-    x:0,
-    y:cvs.height -226,
+    sX : 0,
+    sY : 0,
+    w : 275,
+    h : 226,
+    x : 0,
+    y : cvs.height - 226,
+    
     draw : function(){
+        ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);
         
-        ctx.drawImage(Sprite,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
-       
-        //ctx.drawImage(bg,0,0,cvs.width,cvs.height);
-        
+        ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x + this.w, this.y, this.w, this.h);
     }
+    
 }
+
+
 
 
 
