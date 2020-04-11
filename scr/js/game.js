@@ -8,7 +8,7 @@ const sprite = new Image();
 sprite.src = "assets/img/sprite.png";
 //GAME STATE
 const state = {
-    curent: 0,
+    current: 0,
     getReady:0,
     game :1,
     over:2 
@@ -16,19 +16,17 @@ const state = {
 
 //CONTROL THE STATE GAME
 cvs.addEventListener("click",function(e){
-    switch (state.curent) {
+    switch (state.current) {
         case state.getReady:
-            state.curent = state.game;
+            state.current = state.game;
             break;
         case state.game:
             bird.flap();
             break;
         case state.over:
-            state.curent = state.getReady;
+            state.current = state.getReady;
             break;
-    
-        default:
-            break;
+        
     }
 });
 
@@ -97,8 +95,26 @@ const bird = {
         ctx.restore();
     },
     flap: function(){
+        this.speed =- this.jump;
 
     },
+    update: function (){
+        //if the game state is screen start
+        this.period = state.current == state.getReady ? 10: 5;
+        //animate 
+        this.frame += frames%this.period == 0 ? 1: 0;
+        //frame goes from 0 to 4
+        this.frame = this.frame%this.animation.length;
+
+        if(state.current == state.getReady){
+
+        }else{
+            this.speed += this.gravity;
+            this.y += this.speed;
+
+            
+        }
+    }
 }
 // GET READY MESSAGE
 const getReady = {
@@ -144,7 +160,7 @@ function draw(){
 }
 //UPDATE
 function update(){
-
+    bird.update();    
 }
 //LOOP
 function loop(){
