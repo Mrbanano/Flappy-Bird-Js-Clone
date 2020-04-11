@@ -7,6 +7,7 @@ var CANVAS_WIDTH = 300;
 var CANVAS_HEIGHT = 530;
 contexto.width = WIDTH;
 contexto.height = HEIGHT;
+var JUMP=35
 
 
 var score = 0
@@ -46,7 +47,7 @@ var suelo = new Image()
 suelo.src = "imagenes/suelo.png"
 
 function presionar(){
-    personaje.y -=35
+    personaje.y -=JUMP
 }
 resize()
 function resize(){
@@ -67,15 +68,17 @@ function loop() {
     ctx.clearRect(0,0,300,530)
     //FONDO
     ctx.drawImage(background,0,0)
-    ctx.drawImage(suelo,0,contexto.height - suelo.height)
     // PERSONAJE
     ctx.drawImage(bird,personaje.x,personaje.y)
     //TUBERIAS
     for(var i = 0; i < tuberias.length ; i++){
+        
         var constante = tuberiaNorte.height + 80 
         ctx.drawImage(tuberiaNorte,tuberias[i].x,tuberias[i].y)
         ctx.drawImage(tuberiaSur,tuberias[i].x,tuberias[i].y + constante)
+        ctx.drawImage(suelo,0,contexto.height - suelo.height)  
         tuberias[i].x--
+          
         if(tuberias[i].y + tuberiaNorte.height < 80){
             tuberias[i].y = 0 
         }
@@ -91,7 +94,11 @@ function loop() {
             (personaje.y <= tuberias[i].y + tuberiaNorte.height || 
                 personaje.y + bird.height >= tuberias[i].y + constante)
                 || personaje.y + bird.height >= contexto.height - suelo.height){
-            location.reload()
+                 
+                 gravedad=0
+                 
+        }else{
+            gravedad= 1.5
         }
         if(tuberias[i].x == personaje.x){
             score++
