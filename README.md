@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Mrbanano"><img src="https://i.postimg.cc/0yHnbQjd/undraw-old-day-6x25.png" width="80%"></a>
+  <a href="https://github.com/Mrbanano"><img src="https://i.postimg.cc/0yHnbQjd/undraw-old-day-6x25.png" width="60%"></a>
 </p>
 </p>
 <p align="center">
